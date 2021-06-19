@@ -1,0 +1,19 @@
+spring:
+  kafka:
+    bootstrap-servers:
+      - 18.117.100.143:9092
+    producer:
+      value-serializer:
+        com.example.kafka.serializers.OrderSerializer
+    consumer:
+      value-deserializer:
+        com.example.kafka.deserializers.OrderDeserializer
+consumer:
+  ip:
+    18.117.100.143:9092
+  topic:
+    test
+  count:
+    3
+
+
