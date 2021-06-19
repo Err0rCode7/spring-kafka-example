@@ -15,6 +15,7 @@ import java.io.Serializable;
 
 @Getter
 @Entity
+@ToString
 public class Order {
 
     @Id

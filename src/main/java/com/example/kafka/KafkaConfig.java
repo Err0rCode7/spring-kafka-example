@@ -1,38 +1,24 @@
 package com.example.kafka;
 
-import com.example.kafka.domain.Order;
-import com.example.kafka.serializers.OrderSerializer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.common.serialization.StringSerializer;
+import com.example.kafka.consumer.MyConsumerConfig;
+import com.example.kafka.deserializers.OrderDeserializer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.DefaultKafkaProducerFactory;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.kafka.core.ProducerFactory;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @Configuration
 public class KafkaConfig {
 
-//    @Bean
-//    public ProducerFactory<String, Order> producerFactory() {
-//        return new DefaultKafkaProducerFactory<>(producerConfigs());
-//    }
-//
-//    @Bean
-//    public Map<String, Object> producerConfigs() {
-//        Map<String, Object> props = new HashMap<>();
-//        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "18.117.100.143:9092");
-//        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-//        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, OrderSerializer.class);
-//        // See https://kafka.apache.org/documentation/#producerconfigs for more properties
-//        return props;
-//    }
-//
-//    @Bean
-//    public KafkaTemplate<String, Order> kafkaTemplate() {
-//        return new KafkaTemplate<String, Order>(producerFactory());
-//    }
+    @Bean
+    public MyConsumerConfig myConsumerConfig() {
+        MyConsumerConfig config = new MyConsumerConfig();
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "18.117.100.143:9092");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "test_group");
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, OrderDeserializer.class);
+        config.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
+        return config;
+    }
 }
