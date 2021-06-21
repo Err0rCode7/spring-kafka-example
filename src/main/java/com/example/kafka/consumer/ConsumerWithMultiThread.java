@@ -33,7 +33,6 @@ public class ConsumerWithMultiThread implements Runnable {
     }
 
     public void consume() {
-
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < CONSUMER_COUNT; i++) {
             ConsumerWorker worker = new ConsumerWorker(myConsumerConfig.getProps(), TOPIC_NAME, i);

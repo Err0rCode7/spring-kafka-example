@@ -1,4 +1,4 @@
-package com.example.kafka;
+package com.example.kafka.config;
 
 import com.example.kafka.consumer.MyConsumerConfig;
 import com.example.kafka.deserializers.OrderDeserializer;
